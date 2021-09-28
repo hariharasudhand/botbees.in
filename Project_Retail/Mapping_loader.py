@@ -17,7 +17,7 @@ class MappingFileLoader:
         
         data = xls2.parse(xls2.sheet_names[0])
         data1 = xls.parse(xls.sheet_names[1])
-        data2 = xls.parse(xls.sheet_names[0])
+        data2 = xls.parse(xls.sheet_names[2])
 
         
     @staticmethod
@@ -43,14 +43,14 @@ class MappingFileLoader:
         return mappedData1
 
     @staticmethod
-    def fetch_Product_Mapping2():
+    def user_Credentials():
         global data2
         mappedData2 = []
         df2 = pd.DataFrame(data2)
         for index, row in df2.iterrows():
-            rowData2 = {row['BRAND']: row['UI_NAME']}
+            rowData2 = {row['Name']: row['Value']}
             mappedData2.append(rowData2)
-            # print(rowData)
+            #print(rowData2)
         return mappedData2    
         
         
@@ -58,3 +58,4 @@ class MappingFileLoader:
 mfl = MappingFileLoader()
 mfl.fetch_Product_Mapping()
 mfl.fetch_Parse_param_mapping()
+mfl.user_Credentials()
