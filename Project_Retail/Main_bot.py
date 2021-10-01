@@ -27,7 +27,20 @@ try:
     uiActions.calling_fill()
 
     #************    Loging out and closing the bot  ***************#
-    uiActions.loginOut()
+    uiActions.logOut()
 
+    # ************    Exception Block  ***************#
 except ImportError:
-    print(ImportError)    
+    print(ImportError)
+
+    # ************    Finally block   ***************#
+finally:
+    u = UI_Actions()
+    if UI_Constants.XPATH_LOG_OUT == True:
+        u.logOut()
+    elif UI_Constants.LOGIN_URL == True:
+        u.close()
+    else:
+        print("Execution done sucessfully")
+
+

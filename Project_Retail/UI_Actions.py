@@ -6,11 +6,7 @@ import pandas as pd
 from Mapping_loader import MappingFileLoader
 
 
-
 try:
-
-
-
     def retrive_dict_value(dictData, keyName, keyParam1):
         dictValue = dictData.get(keyName)
         print("Brand Name :", dictValue)
@@ -18,7 +14,6 @@ try:
         if dictValue == None:
             dictValue = dictData.get(str(keyName) + "_" + str(keyParam1))
             print("str(keyName)+str(keyParam1) :", str(keyName) + "_" + str(keyParam1))
-
         return dictValue
 
 
@@ -82,7 +77,6 @@ try:
             r.wait(3)
             r.click(UI_Constants.XPATH_CLICK)
             r.wait(2)
-
 
 
     # ***********  Reading Mapping file - Product mapping and Parse Param mapping  ****************#
@@ -156,39 +150,9 @@ try:
     count_ex = len(existing_file_list)
     count_new = len(new_file_record_list)
 
-    # ************    creating three lists with PackSize   ***************#
-    brandName_packsize_ex = []
-    brandName_packsize_new = []
-    brandName_packsize_pur = []
-
-    # ************    iterate through excel     ***************#
-    for i in range(int(existing_file_record_range__st_row), int(existing_file_record_range__end_row) + 1):
-        if not (Data_sheet.cell(row=i, column=2).value == None) or not (Data_sheet.cell(row=i, column=3).value == None):
-            brand_name = Data_sheet.cell(row=i, column=2).value
-            pack_size = Data_sheet.cell(row=i, column=3).value
-            brand_pack_ex = brand_name + "_" + pack_size
-            brandName_packsize_ex.append(brand_pack_ex)
-
-    for i in range(int(new_file_record_range__st_row), int(new_file_record_range__end_row) + 1):
-        if not (Data_sheet.cell(row=i, column=2).value == None) or not (Data_sheet.cell(row=i, column=3).value == None):
-            brand_name = Data_sheet.cell(row=i, column=2).value
-            pack_size = Data_sheet.cell(row=i, column=3).value
-            brand_pack_new = brand_name + "_" + pack_size
-            brandName_packsize_new.append(brand_pack_new)
-
-    for i in range(int(purchase_record_range__st_row), int(purchase_record_range__end_row) + 1):
-        if not (Data_sheet.cell(row=i, column=2).value == None) or not (Data_sheet.cell(row=i, column=3).value == None):
-            brand_name = Data_sheet.cell(row=i, column=2).value
-            pack_size = Data_sheet.cell(row=i, column=3).value
-            brand_pack_pur = brand_name + "_" + pack_size
-            brandName_packsize_pur.append(brand_pack_pur)
-
-            # ************    Creating class UI ACTIONS    ***************#
-
+    # ************    Creating class UI ACTIONS    ***************#
 
     class UI_Actions:
-
-
         def __init__(self):
             print()
             r.init(visual_automation=True)
@@ -208,8 +172,7 @@ try:
                 r.snap(UI_Constants.XPATH_CAPTCHA_IMG, UI_Constants.IMG_CAPTCHA_CAPTUREIMAGE_NAME)
                 TextFromImage = pytesseract.image_to_string(UI_Constants.IMG_CAPTCHA_CAPTUREIMAGE_NAME)
                 r.wait(5)
-                r.type(UI_Constants.XPATH_CAPTCHA_TEXT,
-                       TextFromImage)
+                r.type(UI_Constants.XPATH_CAPTCHA_TEXT,TextFromImage)
                 r.wait(5)
                 r.click(UI_Constants.XPATH_LOGIN_BTN)
                 r.wait(5)
@@ -223,15 +186,12 @@ try:
             user_name = r.ask("Enter User Name ")
             r.type(UI_Constants.XPATH_USERNAME, user_name)
             r.wait(3)
-
             pass_word = r.ask("Enter Pass word ")
             r.type(UI_Constants.XPATH_PASSWORD, pass_word)
             r.wait(3)
-
             captcha_text = r.ask("Enter Captcha Text ")
             r.type(UI_Constants.XPATH_CAPTCHA_TEXT, captcha_text)
             r.wait(3)
-
             r.click(UI_Constants.XPATH_LOGIN_BTN)
             r.wait(5)
 
@@ -249,10 +209,6 @@ try:
             r.wait(2)
 
 
-
-        # left side without purchase
-
-
         @staticmethod
         def fillingBrandnamePacksizeAndBottles(salesRecords, purchanseRecords):
             for x in range(0, len(salesRecords)):
@@ -260,50 +216,36 @@ try:
                 Pack_Size_ex = str(salesRecords[x][2])
                 Bottle_count_ex = str(salesRecords[x][3])
                 is_Exist_Purchase = False
-
                 # loop over existing sales
                 for y in range(0, len(purchanseRecords)):
                     Brand_name_pur = str(purchanseRecords[y][1])
                     Pack_Size_pur = str(purchanseRecords[y][2])
                     Bottle_count_pur = str(purchanseRecords[y][3])
-                    # print("Brand_name_pur :",Brand_name_pur, "Brand_name_new:",Brand_name_new )
                     if not Brand_name_ex == None:
                         is_Exist_Purchase = (Brand_name_ex == Brand_name_pur and Pack_Size_ex == Pack_Size_pur)
                         if is_Exist_Purchase:
                             if salesRecords == existing_file_list:
-                                setNewAndPurchaseStockValue(retrive_dict_value(mf2, Brand_name_ex, Pack_Size_ex),
-                                                            Pack_Size_ex, Bottle_count_ex, Bottle_count_pur, False)
+                                setNewAndPurchaseStockValue(retrive_dict_value(mf2, Brand_name_ex, Pack_Size_ex),Pack_Size_ex, Bottle_count_ex, Bottle_count_pur, False)
                             else:
-                                setNewAndPurchaseStockValue(retrive_dict_value(mf2, Brand_name_ex, Pack_Size_ex),
-                                                            Pack_Size_ex, Bottle_count_ex, Bottle_count_pur, True)
-                            #Brand_Name_Dic = str(retrive_dict_value(mf2, Brand_name_ex, Pack_Size_ex))
-
-                            # print("****************  BRAND NAME MATCHES WITH PURCHASE - SET VALUE in PURCHASE SECTION *************************")
-                            # print("Set Value in website ERP Product Name -", Brand_name_ex)
-                            # print("pack size -", Pack_Size_ex)
-                            # print("bottle count total -", Bottle_count_ex)
-                            # print("bottle total in purchase -", Bottle_count_pur)
-                            # print("Website Product Name    ", retrive_dict_value(mf2, Brand_name_ex, Pack_Size_ex))
+                                setNewAndPurchaseStockValue(retrive_dict_value(mf2, Brand_name_ex, Pack_Size_ex),Pack_Size_ex, Bottle_count_ex, Bottle_count_pur, True)
                             break
                 if is_Exist_Purchase == False:
                     if salesRecords == existing_file_list:
                         setExistingStockValue(retrive_dict_value(mf2, Brand_name_ex, Pack_Size_ex), Pack_Size_ex, Bottle_count_ex, False)
                     else:
                         setExistingStockValue(retrive_dict_value(mf2, Brand_name_ex, Pack_Size_ex), Pack_Size_ex,Bottle_count_ex, True)
-                    # print("****************  BRAND NAME **DONOT** MATCHES WITH PURCHASE - SET VALUE in PURCHASE SECTION *************************")
-                    # print("ERP Product Name -", Brand_name_ex)
-                    # print("pack size -", Pack_Size_ex)
-                    # print("bottel count total -", Bottle_count_ex)
-                  # print("Website Product Name    ", retrive_dict_value(mf2, Brand_name_ex, Pack_Size_ex))
 
         def calling_fill(self):
             self.fillingBrandnamePacksizeAndBottles(existing_file_list, purchase_record_list)
             self.fillingBrandnamePacksizeAndBottles(new_file_record_list, purchase_record_list)
 
-        def loginOut(self):
+        def logOut(self):
             r.wait(2)
             r.click(UI_Constants.XPATH_LOG_OUT)
             r.wait(2)
+            r.close()
+
+        def close(self):
             r.close()
 
 except ImportError:
