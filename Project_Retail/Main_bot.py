@@ -24,7 +24,7 @@ try:
 
 
     #************    BrandName,PackSize and Bottles count  ***************#
-    uiActions.fillingBrandnamePacksizeAndBottles()
+    uiActions.calling_fill()
 
     #************    Loging out and closing the bot  ***************#
     uiActions.loginOut()

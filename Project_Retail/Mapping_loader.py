@@ -12,8 +12,8 @@ class MappingFileLoader:
 
     def __init__(self):
         global data,data1,data2        
-        xls = pd.ExcelFile('D:\SMWSED\config\mapping_file.xlsx')
-        xls2 = pd.ExcelFile('D:\SMWSED\config\MAPPING LIQUOR NAME new.xlsx')
+        xls = pd.ExcelFile('C:\SMWSED\config\mapping_file.xlsx')
+        xls2 = pd.ExcelFile('C:\SMWSED\config\MAPPING LIQUOR NAME new.xlsx')
         
         data = xls2.parse(xls2.sheet_names[0])
         data1 = xls.parse(xls.sheet_names[1])
@@ -23,11 +23,10 @@ class MappingFileLoader:
     @staticmethod
     def fetch_Product_Mapping():
         global data
-        mappedData = []
+        mappedData = {}
         df = pd.DataFrame(data)
         for index, row in df.iterrows():
-            rowData = {row['BRAND']: row['UI_NAME']}
-            mappedData.append(rowData)
+            mappedData[row['BRAND']] = row['UI_NAME']
             # print(rowData)
         return mappedData
 
