@@ -49,6 +49,16 @@ try:
         r.wait(3)
         r.click(UI_Constants.XPATH_CLICK)
         r.wait(2)
+        submit = r.ask("if you want to submit y or n ")
+        r.wait(1)
+        if submit == "y":
+            r.click(UI_Constants.XPATH_SUBMIT)
+            r.wait(3)
+            r.click(UI_Constants.IMG_OK_BTN)
+            r.wait(2)
+        else:
+            pass
+
 
 
     def setExistingStockValue(brandName, packSize, noofBottle, isNewRecord):
@@ -77,6 +87,14 @@ try:
             r.wait(3)
             r.click(UI_Constants.XPATH_CLICK)
             r.wait(2)
+        submit = r.ask("if you want to submit y or n ")
+        if submit == "y":
+            r.click(UI_Constants.XPATH_SUBMIT)
+            r.wait(3)
+            r.click(UI_Constants.IMG_OK_BTN)
+            r.wait(2)
+        else:
+            pass
 
 
     # ***********  Reading Mapping file - Product mapping and Parse Param mapping  ****************#
@@ -193,7 +211,7 @@ try:
             r.type(UI_Constants.XPATH_CAPTCHA_TEXT, captcha_text)
             r.wait(3)
             r.click(UI_Constants.XPATH_LOGIN_BTN)
-            r.wait(5)
+            r.wait(2)
 
         def performAction(self):
             r.wait(2)

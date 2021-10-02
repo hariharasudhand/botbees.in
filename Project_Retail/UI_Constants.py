@@ -22,6 +22,7 @@ XPATH_CLICK = '//*[@id="normalsale"]/td/fieldset/table/tbody/tr[6]/td[6]/input'
 XPATH_LOG_OUT = '//*[@id="nav"]/li[7]/a/span'
 
 
+
 #BUTTON IMAGE URL
 IMG_OK_BTN = "okBut.png"
 IMG_CAPTCHA_CAPTUREIMAGE_NAME = "cap.png"
