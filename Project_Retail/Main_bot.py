@@ -35,10 +35,11 @@ except ImportError:
 
     # ************    Finally block   ***************#
 finally:
-    u = UI_Actions()
     if UI_Constants.XPATH_LOG_OUT == True:
+        u = UI_Actions()
         u.logOut()
     elif UI_Constants.LOGIN_URL == True:
+        u = UI_Actions()
         u.close()
     else:
         print("Execution done sucessfully")

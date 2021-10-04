@@ -20,7 +20,7 @@ XPATH_NEW_STOCK ="//*[@id=\"newstock2\"]/input"
 XPATH_NEW_STOCK_PURCHASED ="//*[@id=\"totpurchase2\"]/input"
 XPATH_CLICK = '//*[@id="normalsale"]/td/fieldset/table/tbody/tr[6]/td[6]/input'
 XPATH_LOG_OUT = '//*[@id="nav"]/li[7]/a/span'
-
+XPATH_SUBMIT = '//*[@id="normalsale"]/td/fieldset/table/tbody/tr[9]/td[2]/input'
 
 
 #BUTTON IMAGE URL

@@ -27,7 +27,7 @@ class MappingFileLoader:
         df = pd.DataFrame(data)
         for index, row in df.iterrows():
             mappedData[row['BRAND']] = row['UI_NAME']
-            # print(rowData)
+            # print(mappedData)
         return mappedData
 
     @staticmethod    
@@ -58,3 +58,4 @@ mfl = MappingFileLoader()
 mfl.fetch_Product_Mapping()
 mfl.fetch_Parse_param_mapping()
 mfl.user_Credentials()
+

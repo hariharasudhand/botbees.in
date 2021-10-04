@@ -49,17 +49,10 @@ try:
         r.wait(3)
         r.click(UI_Constants.XPATH_CLICK)
         r.wait(2)
-        submit = r.ask("if you want to submit y or n ")
-        r.wait(1)
-        if submit == "y":
-            r.click(UI_Constants.XPATH_SUBMIT)
-            r.wait(3)
-            r.click(UI_Constants.IMG_OK_BTN)
-            r.wait(2)
-        else:
-            pass
-
-
+        r.click(UI_Constants.XPATH_SUBMIT)
+        r.wait(3)
+        r.click(UI_Constants.IMG_OK_BTN)
+        r.wait(2)
 
     def setExistingStockValue(brandName, packSize, noofBottle, isNewRecord):
         r.wait(3)
@@ -87,14 +80,10 @@ try:
             r.wait(3)
             r.click(UI_Constants.XPATH_CLICK)
             r.wait(2)
-        submit = r.ask("if you want to submit y or n ")
-        if submit == "y":
-            r.click(UI_Constants.XPATH_SUBMIT)
-            r.wait(3)
-            r.click(UI_Constants.IMG_OK_BTN)
-            r.wait(2)
-        else:
-            pass
+        r.click(UI_Constants.XPATH_SUBMIT)
+        r.wait(3)
+        r.click(UI_Constants.IMG_OK_BTN)
+        r.wait(2)
 
 
     # ***********  Reading Mapping file - Product mapping and Parse Param mapping  ****************#
@@ -258,10 +247,12 @@ try:
             self.fillingBrandnamePacksizeAndBottles(new_file_record_list, purchase_record_list)
 
         def logOut(self):
+            print("logot started")
             r.wait(2)
             r.click(UI_Constants.XPATH_LOG_OUT)
             r.wait(2)
             r.close()
+            print("logot ended")
 
         def close(self):
             r.close()
