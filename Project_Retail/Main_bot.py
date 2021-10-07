@@ -1,5 +1,6 @@
 from UI_Actions import UI_Actions
 import UI_Constants
+from UI_Actions import login_retry
 
 try:
     #************     UI Bot Action starts    ***************#
@@ -7,7 +8,7 @@ try:
 
     #************     Initiate WebSite Login  ***************#
     i = 0
-    while i < UI_Constants.LOGIN_RETRY:
+    while i < login_retry:
         isLoginSuccess = uiActions.login()
         if isLoginSuccess == True:
             break

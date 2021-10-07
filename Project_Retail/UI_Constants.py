@@ -25,10 +25,11 @@ XPATH_SUBMIT = '//*[@id="normalsale"]/td/fieldset/table/tbody/tr[9]/td[2]/input'
 
 #BUTTON IMAGE URL
 IMG_OK_BTN = "okBut.png"
+ok_login ="ok.png"
 IMG_CAPTCHA_CAPTUREIMAGE_NAME = "cap.png"
 
 #CONTANT VALUES
-USER_NAME = "MUNIYANDI"
-PASSWORD = "kannanSMW@272"
-LOGIN_RETRY = 2
+# USER_NAME = "MUNIYANDI"
+# PASSWORD = "kannanSMW@272"
+LOGIN_RETRY = 1
 FL2_REATAIL_SALE = 'FL2 REATAIL SALE'

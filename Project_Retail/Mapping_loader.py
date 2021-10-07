@@ -44,11 +44,10 @@ class MappingFileLoader:
     @staticmethod
     def user_Credentials():
         global data2
-        mappedData2 = []
+        mappedData2 = {}
         df2 = pd.DataFrame(data2)
         for index, row in df2.iterrows():
-            rowData2 = {row['Name']: row['Value']}
-            mappedData2.append(rowData2)
+            mappedData2[row['Name']] = row['Value']
             #print(rowData2)
         return mappedData2    
         
