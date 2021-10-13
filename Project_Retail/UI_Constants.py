@@ -21,6 +21,7 @@ XPATH_NEW_STOCK_PURCHASED ="//*[@id=\"totpurchase2\"]/input"
 XPATH_CLICK = '//*[@id="normalsale"]/td/fieldset/table/tbody/tr[6]/td[6]/input'
 XPATH_LOG_OUT = '//*[@id="nav"]/li[7]/a/span'
 XPATH_SUBMIT = '//*[@id="normalsale"]/td/fieldset/table/tbody/tr[9]/td[2]/input'
+XPATH_SELECT = '//*[@id="normalsale"]/td/fieldset/table/tbody/tr[5]/td[6]/select'
 
 
 #BUTTON IMAGE URL
@@ -30,3 +31,4 @@ IMG_CAPTCHA_CAPTUREIMAGE_NAME = "cap.png"
 
 #CONTANT VALUES
 FL2_REATAIL_SALE = 'FL2 REATAIL SALE'
+SELECT = '-----------------Select---------------'

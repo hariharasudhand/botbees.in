@@ -1,3 +1,4 @@
+import sklearn
 import tagui as r
 import UI_Constants
 import pytesseract
@@ -9,11 +10,11 @@ from Mapping_loader import MappingFileLoader
 try:
     def retrive_dict_value(dictData, keyName, keyParam1):
         dictValue = dictData.get(keyName)
-        print("Brand Name :", dictValue)
+        # print("Brand Name :", dictValue)
         # print("len(dictValue) :" ,len(dictValue))
         if dictValue == None:
             dictValue = dictData.get(str(keyName) + "_" + str(keyParam1))
-            print("str(keyName)+str(keyParam1) :", str(keyName) + "_" + str(keyParam1))
+            # print("str(keyName)+str(keyParam1) :", str(keyName) + "_" + str(keyParam1))
         return dictValue
 
 
@@ -57,6 +58,12 @@ try:
         # r.wait(2)
         # r.click(UI_Constants.IMG_OK_BTN)
         # r.wait(2)
+        r.click(UI_Constants.XPATH_BRAND_NAME)
+        r.wait(1)
+        r.type(UI_Constants.XPATH_BRAND_NAME,UI_Constants.SELECT)
+        r.wait(1)
+        r.click(UI_Constants.XPATH_CLICK)
+        r.wait(1)
 
     def setExistingStockValue(brandName, packSize, noofBottle, isNewRecord):
         r.wait(2)
@@ -92,6 +99,12 @@ try:
         # r.wait(2)
         # r.click(UI_Constants.IMG_OK_BTN)
         # r.wait(2)
+        r.click(UI_Constants.XPATH_BRAND_NAME)
+        r.wait(1)
+        r.type(UI_Constants.XPATH_BRAND_NAME, UI_Constants.SELECT)
+        r.wait(1)
+        r.click(UI_Constants.XPATH_CLICK)
+        r.wait(1)
 
 
     # ***********  Reading Mapping file - Product mapping and Parse Param mapping  ****************#
@@ -126,6 +139,9 @@ try:
     purchase_record_range__st_row = purchase_record_range_rows.split(',')[0]
     purchase_record_range__end_row = purchase_record_range_rows.split(',')[1]
 
+
+
+
     # ************     Reading Main excel sheet    ***************#
     ExcelFile_Path = r'C:\SMWSED\config\SMWSED.xlsx'
     Data_file = openpyxl.load_workbook(ExcelFile_Path)
@@ -142,6 +158,8 @@ try:
     new_file_record_list = []
     purchase_record_list = []
 
+
+
     # ************    iterate through excel    ***************#
     for i in range(int(existing_file_record_range__st_row), int(existing_file_record_range__end_row) + 1):
         existing_file_list_col = []
@@ -150,6 +168,7 @@ try:
             existing_file_list_col.append(cell_obj.value)
         existing_file_list.append(existing_file_list_col)
 
+
     for i in range(int(new_file_record_range__st_row), int(new_file_record_range__end_row) + 1):
         new_file_record_list_col = []
         for j in range(1, Data_sheet.max_column + 1):
@@ -157,12 +176,15 @@ try:
             new_file_record_list_col.append(cell_obj.value)
         new_file_record_list.append(new_file_record_list_col)
 
+
+
     for i in range(int(purchase_record_range__st_row), int(purchase_record_range__end_row) + 1):
         purchase_record_list_col = []
         for j in range(1, Data_sheet.max_column + 1):
             cell_obj = Data_sheet.cell(row=i, column=j)
             purchase_record_list_col.append(cell_obj.value)
         purchase_record_list.append(purchase_record_list_col)
+
 
     # ************    Getting lenth os three lists    ***************#
     count_pur = len(purchase_record_list)
@@ -182,10 +204,8 @@ try:
             print("its inside login method")
             if r.popup(UI_Constants.LOGIN_URL) == True:
                 r.wait(5)
-                print(username)
                 r.type(UI_Constants.XPATH_USERNAME, username)
                 r.wait(2)
-                print(password)
                 r.type(UI_Constants.XPATH_PASSWORD,password)
                 r.wait(2)
                 r.snap(UI_Constants.XPATH_CAPTCHA_IMG, UI_Constants.IMG_CAPTCHA_CAPTUREIMAGE_NAME)
@@ -205,14 +225,17 @@ try:
 
         def manualLogin(self):
             user_name = r.ask("Enter User Name ")
+            r.wait(10)
             r.type(UI_Constants.XPATH_USERNAME, user_name)
-            r.wait(10)
+            r.wait(3)
             pass_word = r.ask("Enter Pass word ")
+            r.wait(10)
             r.type(UI_Constants.XPATH_PASSWORD, pass_word)
-            r.wait(10)
+            r.wait(3)
             captcha_text = r.ask("Enter Captcha Text ")
-            r.type(UI_Constants.XPATH_CAPTCHA_TEXT, captcha_text)
             r.wait(10)
+            r.type(UI_Constants.XPATH_CAPTCHA_TEXT, captcha_text)
+            r.wait(3)
             r.click(UI_Constants.XPATH_LOGIN_BTN)
             r.wait(1)
 
@@ -227,7 +250,7 @@ try:
             r.type(UI_Constants.XPATH_DATE_OF_SALE, Date_of_sale_date)
             r.wait(2)
             r.type(UI_Constants.XPATH_FL2_REATAIL_SALE, UI_Constants.FL2_REATAIL_SALE)
-            r.wait(2)
+            r.wait(1)
 
 
         @staticmethod
@@ -261,12 +284,10 @@ try:
             self.fillingBrandnamePacksizeAndBottles(new_file_record_list, purchase_record_list)
 
         def logOut(self):
-            print("logot started")
             r.wait(2)
             r.click(UI_Constants.XPATH_LOG_OUT)
             r.wait(2)
             r.close()
-            print("logot ended")
 
         def close(self):
             r.close()
