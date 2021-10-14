@@ -267,7 +267,12 @@ try:
                             break
                 if is_Exist_Purchase == False:
                     if salesRecords == existing_file_list:
-                        setExistingStockValue(retrive_dict_value(mf2, Brand_name_ex, Pack_Size_ex), Pack_Size_ex, Bottle_count_ex, False)
+                        if salesRecords[x][1] == 0 :
+                            print("no value")
+                            break
+                        else:
+                            print("in else condition")
+                            setExistingStockValue(retrive_dict_value(mf2, Brand_name_ex, Pack_Size_ex), Pack_Size_ex, Bottle_count_ex, False)
                     else:
                         setExistingStockValue(retrive_dict_value(mf2, Brand_name_ex, Pack_Size_ex), Pack_Size_ex,Bottle_count_ex, True)
 
