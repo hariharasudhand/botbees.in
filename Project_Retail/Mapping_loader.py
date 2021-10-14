@@ -27,7 +27,6 @@ class MappingFileLoader:
         df = pd.DataFrame(data)
         for index, row in df.iterrows():
             mappedData[row['BRAND']] = row['UI_NAME']
-            # print(mappedData)
         return mappedData
 
     @staticmethod    
@@ -38,7 +37,6 @@ class MappingFileLoader:
         for index, row in df1.iterrows():
             rowData1 = {row['param.name']: row['param.value']}
             mappedData1.append(rowData1)
-            #print(rowData1)
         return mappedData1
 
     @staticmethod
@@ -48,7 +46,6 @@ class MappingFileLoader:
         df2 = pd.DataFrame(data2)
         for index, row in df2.iterrows():
             mappedData2[row['Name']] = row['Value']
-            #print(rowData2)
         return mappedData2    
         
         

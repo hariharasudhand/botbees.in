@@ -1,4 +1,3 @@
-import sklearn
 import tagui as r
 import UI_Constants
 import pytesseract
@@ -10,11 +9,8 @@ from Mapping_loader import MappingFileLoader
 try:
     def retrive_dict_value(dictData, keyName, keyParam1):
         dictValue = dictData.get(keyName)
-        # print("Brand Name :", dictValue)
-        # print("len(dictValue) :" ,len(dictValue))
         if dictValue == None:
             dictValue = dictData.get(str(keyName) + "_" + str(keyParam1))
-            # print("str(keyName)+str(keyParam1) :", str(keyName) + "_" + str(keyParam1))
         return dictValue
 
 
@@ -29,11 +25,10 @@ try:
         r.click(UI_Constants.XPATH_PACK_SIZE)
         r.wait(1)
         r.type(UI_Constants.XPATH_PACK_SIZE, packSize)
-        r.wait(2)
+        r.wait(1)
         r.click(UI_Constants.XPATH_CLICK)
         r.wait(1)
         if isNewRecord == True:
-            # print("inside if of purchase is equal to new of setNewAndPurchaseStockValue")
             r.type(UI_Constants.XPATH_NEW_STOCK, '[clear]')
             r.wait(1)
             r.type(UI_Constants.XPATH_NEW_STOCK, noofBottle)
@@ -41,7 +36,6 @@ try:
             r.click(UI_Constants.XPATH_CLICK)
             r.wait(1)
         else:
-            # print("inside else of purchase is equal to existing of setNewAndPurchaseStockValue")
             r.type(UI_Constants.XPATH_EXISTING_STOCK, '[clear]')
             r.wait(1)
             r.type(UI_Constants.XPATH_EXISTING_STOCK, noofBottle)
@@ -80,7 +74,6 @@ try:
         r.click(UI_Constants.XPATH_CLICK)
         r.wait(1)
         if isNewRecord == True:
-            # print("inside else of new is not equal to purchase of setExistingStockValue")
             r.type(UI_Constants.XPATH_NEW_STOCK, '[clear]')
             r.wait(1)
             r.type(UI_Constants.XPATH_NEW_STOCK, noofBottle)
@@ -88,7 +81,6 @@ try:
             r.click(UI_Constants.XPATH_CLICK)
             r.wait(1)
         else:
-            # print("inside if of existing is not equal to purchase of setExistingStockValue")
             r.type(UI_Constants.XPATH_EXISTING_STOCK, '[clear]')
             r.wait(1)
             r.type(UI_Constants.XPATH_EXISTING_STOCK, noofBottle)
@@ -225,15 +217,15 @@ try:
 
         def manualLogin(self):
             user_name = r.ask("Enter User Name ")
-            r.wait(10)
+            r.wait(8)
             r.type(UI_Constants.XPATH_USERNAME, user_name)
             r.wait(3)
             pass_word = r.ask("Enter Pass word ")
-            r.wait(10)
+            r.wait(8)
             r.type(UI_Constants.XPATH_PASSWORD, pass_word)
             r.wait(3)
             captcha_text = r.ask("Enter Captcha Text ")
-            r.wait(10)
+            r.wait(8)
             r.type(UI_Constants.XPATH_CAPTCHA_TEXT, captcha_text)
             r.wait(3)
             r.click(UI_Constants.XPATH_LOGIN_BTN)
