@@ -26,7 +26,7 @@ XPATH_SELECT = '//*[@id="normalsale"]/td/fieldset/table/tbody/tr[5]/td[6]/select
 
 #BUTTON IMAGE URL
 IMG_OK_BTN = "okBut.png"
-ok_login ="ok.png"
+ok_login = "ok.png"
 IMG_CAPTCHA_CAPTUREIMAGE_NAME = "cap.png"
 
 #CONTANT VALUES

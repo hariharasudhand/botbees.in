@@ -48,10 +48,10 @@ try:
         r.wait(1)
         r.click(UI_Constants.XPATH_CLICK)
         r.wait(1)
-        # r.click(UI_Constants.XPATH_SUBMIT)
-        # r.wait(2)
-        # r.click(UI_Constants.IMG_OK_BTN)
-        # r.wait(2)
+        r.click(UI_Constants.XPATH_SUBMIT)
+        r.wait(2)
+        r.click(UI_Constants.IMG_OK_BTN)
+        r.wait(2)
         r.click(UI_Constants.XPATH_BRAND_NAME)
         r.wait(1)
         r.type(UI_Constants.XPATH_BRAND_NAME,UI_Constants.SELECT)
@@ -73,24 +73,31 @@ try:
         r.wait(1)
         r.click(UI_Constants.XPATH_CLICK)
         r.wait(1)
-        if isNewRecord == True:
+        if isNewRecord == 1:
             r.type(UI_Constants.XPATH_NEW_STOCK, '[clear]')
             r.wait(1)
             r.type(UI_Constants.XPATH_NEW_STOCK, noofBottle)
             r.wait(1)
             r.click(UI_Constants.XPATH_CLICK)
             r.wait(1)
-        else:
+        elif isNewRecord == 2:
             r.type(UI_Constants.XPATH_EXISTING_STOCK, '[clear]')
             r.wait(1)
             r.type(UI_Constants.XPATH_EXISTING_STOCK, noofBottle)
             r.wait(1)
             r.click(UI_Constants.XPATH_CLICK)
             r.wait(1)
-        # r.click(UI_Constants.XPATH_SUBMIT)
-        # r.wait(2)
-        # r.click(UI_Constants.IMG_OK_BTN)
-        # r.wait(2)
+        elif isNewRecord == 3:
+            r.type(UI_Constants.XPATH_NEW_STOCK_PURCHASED, '[clear]')
+            r.wait(1)
+            r.type(UI_Constants.XPATH_NEW_STOCK_PURCHASED, noofBottle)
+            r.wait(1)
+            r.click(UI_Constants.XPATH_CLICK)
+            r.wait(1)
+        r.click(UI_Constants.XPATH_SUBMIT)
+        r.wait(2)
+        r.click(UI_Constants.IMG_OK_BTN)
+        r.wait(2)
         r.click(UI_Constants.XPATH_BRAND_NAME)
         r.wait(1)
         r.type(UI_Constants.XPATH_BRAND_NAME, UI_Constants.SELECT)
@@ -204,30 +211,30 @@ try:
                 TextFromImage = pytesseract.image_to_string(UI_Constants.IMG_CAPTCHA_CAPTUREIMAGE_NAME)
                 r.wait(5)
                 r.type(UI_Constants.XPATH_CAPTCHA_TEXT,TextFromImage)
+                # r.click(UI_Constants.XPATH_LOGIN_BTN)
+                if r.exist(UI_Constants.XPATH_LOGIN_BTN) == True:
+                    # r.click(UI_Constants.ok_login)
+                    r.wait(3)
+                    r.click(UI_Constants.ok_login)
+                    r.wait(10)
+                    r.click(UI_Constants.ok_login)
                 r.wait(5)
-                r.click(UI_Constants.XPATH_LOGIN_BTN)
-                r.wait(3)
-                if r.exist(UI_Constants.ok_login):
-                    r.click(UI_Constants.ok_login)
-                    r.wait(6)
-                    r.click(UI_Constants.ok_login)
-                r.wait(3)
                 isLoginSuccess = (r.click(UI_Constants.XPATH_LOGIN_BTN) == False)
                 return isLoginSuccess
 
         def manualLogin(self):
             user_name = r.ask("Enter User Name ")
-            r.wait(8)
+            r.wait(10)
             r.type(UI_Constants.XPATH_USERNAME, user_name)
-            r.wait(3)
+            r.wait(10)
             pass_word = r.ask("Enter Pass word ")
-            r.wait(8)
+            r.wait(10)
             r.type(UI_Constants.XPATH_PASSWORD, pass_word)
-            r.wait(3)
+            r.wait(10)
             captcha_text = r.ask("Enter Captcha Text ")
-            r.wait(8)
+            r.wait(10)
             r.type(UI_Constants.XPATH_CAPTCHA_TEXT, captcha_text)
-            r.wait(3)
+            r.wait(10)
             r.click(UI_Constants.XPATH_LOGIN_BTN)
             r.wait(1)
 
@@ -262,23 +269,26 @@ try:
                         if is_Exist_Purchase:
                             if salesRecords == existing_file_list:
                                 setNewAndPurchaseStockValue(retrive_dict_value(mf2, Brand_name_ex, Pack_Size_ex),Pack_Size_ex, Bottle_count_ex, Bottle_count_pur, False)
-                            else:
+                            elif salesRecords == new_file_record_list:
                                 setNewAndPurchaseStockValue(retrive_dict_value(mf2, Brand_name_ex, Pack_Size_ex),Pack_Size_ex, Bottle_count_ex, Bottle_count_pur, True)
                             break
                 if is_Exist_Purchase == False:
-                    if salesRecords == existing_file_list:
+                    if salesRecords == purchase_record_list:
+                        setExistingStockValue(retrive_dict_value(mf2, Brand_name_ex, Pack_Size_ex), Pack_Size_ex,
+                                              Bottle_count_ex, 3)
+                    elif salesRecords == existing_file_list:
                         if salesRecords[x][1] == 0 :
-                            print("no value")
                             break
                         else:
-                            print("in else condition")
-                            setExistingStockValue(retrive_dict_value(mf2, Brand_name_ex, Pack_Size_ex), Pack_Size_ex, Bottle_count_ex, False)
-                    else:
-                        setExistingStockValue(retrive_dict_value(mf2, Brand_name_ex, Pack_Size_ex), Pack_Size_ex,Bottle_count_ex, True)
+                            setExistingStockValue(retrive_dict_value(mf2, Brand_name_ex, Pack_Size_ex), Pack_Size_ex, Bottle_count_ex, 2)
+                    elif salesRecords == new_file_record_list:
+                        setExistingStockValue(retrive_dict_value(mf2, Brand_name_ex, Pack_Size_ex), Pack_Size_ex,Bottle_count_ex, 1)
+
 
         def calling_fill(self):
             self.fillingBrandnamePacksizeAndBottles(existing_file_list, purchase_record_list)
             self.fillingBrandnamePacksizeAndBottles(new_file_record_list, purchase_record_list)
+            self.fillingBrandnamePacksizeAndBottles(purchase_record_list, new_file_record_list)
 
         def logOut(self):
             r.wait(2)
