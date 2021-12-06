@@ -1,6 +1,7 @@
 #URL constants
 LOGIN_URL = "https://exciseportal.py.gov.in/puduvaicalal1/"
 HOME_URL = "https://exciseportal.py.gov.in/puduvaicalal1/home.do"
+PHP_URL = "http://weeroda.com/check/GetCurrentDate.php"
 
 
 #Xpath Key and Xpath value canstants
@@ -22,6 +23,7 @@ XPATH_CLICK = '//*[@id="normalsale"]/td/fieldset/table/tbody/tr[6]/td[6]/input'
 XPATH_LOG_OUT = '//*[@id="nav"]/li[7]/a/span'
 XPATH_SUBMIT = '//*[@id="normalsale"]/td/fieldset/table/tbody/tr[9]/td[2]/input'
 XPATH_SELECT = '//*[@id="normalsale"]/td/fieldset/table/tbody/tr[5]/td[6]/select'
+XPATH_EXISTING_MRP = '//*[@id="normalsale"]/td/fieldset/table/tbody/tr[6]/td[4]/input'
 
 
 #BUTTON IMAGE URL
@@ -32,3 +34,7 @@ IMG_CAPTCHA_CAPTUREIMAGE_NAME = "cap.png"
 #CONTANT VALUES
 FL2_REATAIL_SALE = 'FL2 REATAIL SALE'
 SELECT = '-----------------Select---------------'
+FLAG = False
+
+#FILE PATH
+BOTBEES_HOME = "/.botbees"

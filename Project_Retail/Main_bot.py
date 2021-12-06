@@ -3,32 +3,34 @@ import UI_Constants
 from UI_Actions import login_retry
 
 try:
-    #************     UI Bot Action starts    ***************#
-    uiActions = UI_Actions()
+    class Exercrise_duty():
 
-    #************     Initiate WebSite Login  ***************#
-    i = 0
-    while i < login_retry:
-        isLoginSuccess = uiActions.login()
-        if isLoginSuccess == True:
-            break
-        i = i+1
-    else:
-        uiActions.manualLogin()
+        #************     UI Bot Action starts    ***************#
+        uiActions = UI_Actions()
 
-    #************     Initiate Dealer Form Entry  ***************#
-    uiActions.performAction()
+        #************     Initiate WebSite Login  ***************#
+        i = 0
+        while i < login_retry:
+            isLoginSuccess = uiActions.login()
+            if isLoginSuccess == True:
+                break
+            i = i+1
+        else:
+            uiActions.manualLogin()
 
-
-    #************    Selecting Date and FL2 REATAIL SALE  ***************#
-    uiActions.dateAndFL2reatailSelection()
+        #************     Initiate Dealer Form Entry  ***************#
+        uiActions.performAction()
 
 
-    #************    BrandName,PackSize and Bottles count  ***************#
-    uiActions.calling_fill()
+        #************    Selecting Date and FL2 REATAIL SALE  ***************#
+        uiActions.dateAndFL2reatailSelection()
 
-    #************    Loging out and closing the bot  ***************#
-    uiActions.logOut()
+
+        #************    BrandName,PackSize and Bottles count  ***************#
+        uiActions.calling_fill()
+
+        #************    Loging out and closing the bot  ***************#
+        uiActions.logOut()
 
     # ************    Exception Block  ***************#
 except ImportError:

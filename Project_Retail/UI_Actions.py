@@ -29,6 +29,7 @@ try:
         r.click(UI_Constants.XPATH_CLICK)
         r.wait(1)
         if isNewRecord == True:
+            print('')
             r.type(UI_Constants.XPATH_NEW_STOCK, '[clear]')
             r.wait(1)
             r.type(UI_Constants.XPATH_NEW_STOCK, noofBottle)
@@ -36,6 +37,7 @@ try:
             r.click(UI_Constants.XPATH_CLICK)
             r.wait(1)
         else:
+            print('')
             r.type(UI_Constants.XPATH_EXISTING_STOCK, '[clear]')
             r.wait(1)
             r.type(UI_Constants.XPATH_EXISTING_STOCK, noofBottle)
@@ -48,16 +50,18 @@ try:
         r.wait(1)
         r.click(UI_Constants.XPATH_CLICK)
         r.wait(1)
-        r.click(UI_Constants.XPATH_SUBMIT)
-        r.wait(2)
-        r.click(UI_Constants.IMG_OK_BTN)
-        r.wait(2)
+        r.snap('page','result.png')
+        # r.click(UI_Constants.XPATH_SUBMIT)
+        # r.wait(2)
+        # r.click(UI_Constants.IMG_OK_BTN)
+        # r.wait(2)
         r.click(UI_Constants.XPATH_BRAND_NAME)
         r.wait(1)
         r.type(UI_Constants.XPATH_BRAND_NAME,UI_Constants.SELECT)
         r.wait(1)
         r.click(UI_Constants.XPATH_CLICK)
         r.wait(1)
+
 
     def setExistingStockValue(brandName, packSize, noofBottle, isNewRecord):
         r.wait(2)
@@ -74,6 +78,7 @@ try:
         r.click(UI_Constants.XPATH_CLICK)
         r.wait(1)
         if isNewRecord == 1:
+            print("")
             r.type(UI_Constants.XPATH_NEW_STOCK, '[clear]')
             r.wait(1)
             r.type(UI_Constants.XPATH_NEW_STOCK, noofBottle)
@@ -81,6 +86,7 @@ try:
             r.click(UI_Constants.XPATH_CLICK)
             r.wait(1)
         elif isNewRecord == 2:
+            print("")
             r.type(UI_Constants.XPATH_EXISTING_STOCK, '[clear]')
             r.wait(1)
             r.type(UI_Constants.XPATH_EXISTING_STOCK, noofBottle)
@@ -88,16 +94,18 @@ try:
             r.click(UI_Constants.XPATH_CLICK)
             r.wait(1)
         elif isNewRecord == 3:
+            print("")
             r.type(UI_Constants.XPATH_NEW_STOCK_PURCHASED, '[clear]')
             r.wait(1)
             r.type(UI_Constants.XPATH_NEW_STOCK_PURCHASED, noofBottle)
             r.wait(1)
             r.click(UI_Constants.XPATH_CLICK)
             r.wait(1)
-        r.click(UI_Constants.XPATH_SUBMIT)
-        r.wait(2)
-        r.click(UI_Constants.IMG_OK_BTN)
-        r.wait(2)
+        r.snap('page', 'result.png')
+        # r.click(UI_Constants.XPATH_SUBMIT)
+        # r.wait(2)
+        # r.click(UI_Constants.IMG_OK_BTN)
+        # r.wait(2)
         r.click(UI_Constants.XPATH_BRAND_NAME)
         r.wait(1)
         r.type(UI_Constants.XPATH_BRAND_NAME, UI_Constants.SELECT)
@@ -274,8 +282,7 @@ try:
                             break
                 if is_Exist_Purchase == False:
                     if salesRecords == purchase_record_list:
-                        setExistingStockValue(retrive_dict_value(mf2, Brand_name_ex, Pack_Size_ex), Pack_Size_ex,
-                                              Bottle_count_ex, 3)
+                        setExistingStockValue(retrive_dict_value(mf2, Brand_name_ex, Pack_Size_ex), Pack_Size_ex,Bottle_count_ex, 3)
                     elif salesRecords == existing_file_list:
                         if salesRecords[x][1] == 0 :
                             break
