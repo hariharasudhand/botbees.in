@@ -27,8 +27,8 @@ XPATH_EXISTING_MRP = '//*[@id="normalsale"]/td/fieldset/table/tbody/tr[6]/td[4]/
 
 
 #BUTTON IMAGE URL
-IMG_OK_BTN = "okBut.png"
-ok_login = "ok.png"
+IMG_OK_BTN = "C:/Users/Admin/.botbees/okBut.png"
+ok_login = "C:/Users/Admin/.botbees/ok.png"
 IMG_CAPTCHA_CAPTUREIMAGE_NAME = "cap.png"
 
 #CONTANT VALUES

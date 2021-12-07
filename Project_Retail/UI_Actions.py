@@ -150,7 +150,7 @@ try:
 
 
     # ************     Reading Main excel sheet    ***************#
-    ExcelFile_Path = r'C:\SMWSED\config\SMWSED.xlsx'
+    ExcelFile_Path = r'C:/Users/Admin/.botbees/config/SMWSED.xlsx'
     Data_file = openpyxl.load_workbook(ExcelFile_Path)
     Data_sheet = Data_file['SMWSED']
 

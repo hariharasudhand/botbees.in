@@ -12,8 +12,8 @@ class MappingFileLoader:
 
     def __init__(self):
         global data,data1,data2        
-        xls = pd.ExcelFile('C:\SMWSED\config\mapping_file.xlsx')
-        xls2 = pd.ExcelFile('C:\SMWSED\config\MAPPING LIQUOR NAME new.xlsx')
+        xls = pd.ExcelFile('C:/Users/Admin/.botbees/config/mapping_file.xlsx')
+        xls2 = pd.ExcelFile('C:/Users/Admin/.botbees/config/MAPPING LIQUOR NAME new.xlsx')
         
         data = xls2.parse(xls2.sheet_names[0])
         data1 = xls.parse(xls.sheet_names[1])
